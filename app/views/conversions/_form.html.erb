@@ -1,0 +1,5 @@
+<%= simple_form_for @conversion, url: path, method: method, data: { turbo: false } do |f| %>
+  <%= f.input :base_currency, label: 'Base Currency: ', input_html: {maxlength: 3} %>
+  <%= f.input :target_currency, label: 'Target Currency: ', input_html: {maxlength: 3} %>
+  <%= f.submit 'SAVE' %>
+<% end %>
