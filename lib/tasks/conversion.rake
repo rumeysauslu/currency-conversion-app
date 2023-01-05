@@ -4,24 +4,26 @@ require 'net/http'
 namespace :conversion do
   desc 'set conversion rates'
   task set_rates: [:environment] do
-
     Conversion.all.each do |con|
-      from = con.base_currency
-      to = con.target_currency
-      amount = 1
-
-      url = URI("https://api.apilayer.com/fixer/convert?to=#{to}&from=#{from}&amount=#{amount}")
-
-      https = Net::HTTP.new(url.host, url.port);
-      https.use_ssl = true
-
-      request = Net::HTTP::Get.new(url)
-      request['apikey'] = 'UX7hwoAaztLUYYyoP3kRuKv6dAOIPRAZ'
-
-      response = https.request(request).read_body
-      response_obj = JSON.parse(response)
-      
-      con.update(rate: response_obj['info']['rate'])
+      response = get_response(con.base_currency, con.target_currency)
+      con.update(rate: response['info']['rate'])
     end
+    ActionCable.server.broadcast('conversion_channel', Conversion.all)
+  end
+
+  def get_response(from, to)
+    url = URI("https://api.apilayer.com/fixer/convert?to=#{to}&from=#{from}&amount=1")
+    send_request(url)
+  end
+
+  def send_request(url)
+    https = Net::HTTP.new(url.host, url.port);
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(url)
+    request['apikey'] = 'XZSaOYpOGW6JSQZbeY0qo1F9P4wn1oSx'
+
+    response = https.request(request).read_body
+    response_obj = JSON.parse(response)
   end
 end

@@ -3,6 +3,6 @@
 <%=@conversions.each do |con|%>
   <%=con.base_currency%>
   <%=con.target_currency%>
-  <%=con.rate%>
+  <div id="rate_<%=con.id%>"><%=con.rate%></div>
   <br>
 <%end%>
