@@ -21,7 +21,7 @@ namespace :conversion do
     https.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
-    request['apikey'] = 'XZSaOYpOGW6JSQZbeY0qo1F9P4wn1oSx'
+    request['apikey'] = "#{Setting.api_key}"
 
     response = https.request(request).read_body
     response_obj = JSON.parse(response)

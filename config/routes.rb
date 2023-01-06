@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   root 'conversions#index'
   get '/new-conversion', to: 'conversions#new', as: 'new_conversion'
   post '/create-conversion', to: 'conversions#create', as: 'create_conversion'
+  
+    get '/settings', to: 'settings#index', as: 'settings'
+    post '/settings-update', to: 'settings#update', as: 'settings_update'
 end

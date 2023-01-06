@@ -1,0 +1,5 @@
+<h4>SETTINGS</h4>
+<%= form_tag settings_update_path do |f| %>
+  <%=text_field_tag :api_key, Setting.api_key %>
+  <%=submit_tag 'save' %>
+<%end%>

@@ -1,4 +1,5 @@
 <%= link_to 'Add New', new_conversion_path%>
+<%= link_to 'Change APIKEY', settings_path%>
 <h5> CONVERSIONS </h5>
 <%=@conversions.each do |con|%>
   <%=con.base_currency%>
