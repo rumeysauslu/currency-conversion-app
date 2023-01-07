@@ -3,11 +3,11 @@
 class Conversion < ApplicationRecord
   # validations
   validates :base_currency, :target_currency, presence: true
-  validates :base_currency, uniqueness: {scope: :target_currency}
+  validates :base_currency, uniqueness: { scope: :target_currency }
 
   # callbacks
   before_create :set_currency
-  
+
   private
 
   def set_currency

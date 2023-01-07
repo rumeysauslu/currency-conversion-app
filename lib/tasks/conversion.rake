@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'uri'
 require 'net/http'
 
@@ -21,9 +23,9 @@ namespace :conversion do
     https.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
-    request['apikey'] = "#{Setting.api_key}"
+    request['apikey'] = Setting.api_key.to_s
 
     response = https.request(request).read_body
-    response_obj = JSON.parse(response)
+    JSON.parse(response)
   end
 end

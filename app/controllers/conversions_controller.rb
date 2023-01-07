@@ -11,7 +11,12 @@ class ConversionsController < ApplicationController
 
   def create
     @conversion = Conversion.new(conversion_params)
-    @conversion.save ? (redirect_to root_path, notice: 'Conversion created successfully') : render(:new)
+    if @conversion.save
+      (redirect_to root_path,
+                   notice: 'Conversion created successfully')
+    else
+      render(:new)
+    end
   end
 
   def destroy

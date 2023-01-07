@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_06_075940) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_07_130459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_075940) do
     t.decimal "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["base_currency", "target_currency"], name: "index_conversions_on_base_currency_and_target_currency", unique: true
   end
 
   create_table "settings", force: :cascade do |t|
