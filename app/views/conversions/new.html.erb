@@ -1,1 +1,7 @@
-<%= render 'form', path: create_conversion_path, method: 'POST' %>
+<div class="container">
+  <%= turbo_frame_tag Conversion.new do%>
+    <hr>
+    <h6>ADD NEW CONVERSION PAIR</h6>
+    <%= render 'form', path: conversions_path, method: 'POST' %>
+  <%end%>
+</div>

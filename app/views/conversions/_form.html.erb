@@ -1,5 +1,14 @@
 <%= simple_form_for @conversion, url: path, method: method, data: { turbo: false } do |f| %>
-  <%= f.input :base_currency, label: 'Base Currency: ', input_html: {maxlength: 3} %>
-  <%= f.input :target_currency, label: 'Target Currency: ', input_html: {maxlength: 3} %>
-  <%= f.submit 'SAVE' %>
+  <%= f.error_notification%>
+  <div class="form-group">
+    <label>Base Currency:</label>
+    <%= f.input :base_currency, input_html: { maxlength: 3, size: 15 } , class: 'form-control', label: false%>
+  </div>
+  <div class="form-group">
+    <label>Target Currency:</label>
+    <%= f.input :target_currency, input_html: { maxlength: 3, size: 15 }, class: 'form-control', label: false %>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'SAVE', class: 'btn btn-sm btn-success' %>
+  </div>
 <% end %>

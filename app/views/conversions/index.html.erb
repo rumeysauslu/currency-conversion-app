@@ -1,9 +1,48 @@
-<%= link_to 'Add New', new_conversion_path%>
-<%= link_to 'Change APIKEY', settings_path%>
-<h5> CONVERSIONS </h5>
-<%=@conversions.each do |con|%>
-  <%=con.base_currency%>
-  <%=con.target_currency%>
-  <div id="rate_<%=con.id%>"><%=con.rate%></div>
-  <br>
-<%end%>
+<div class="container">
+  <h2>Currency Conversion App</h2>
+  <%= turbo_frame_tag 'settings' do %>
+
+    <%= link_to settings_path, class: 'btn btn-sm btn-primary', data: { turbo_frame: 'settings'} do %>
+      <i class="fa fa-xs fa-cog"></i>
+    <%end%>
+    <%= link_to new_conversion_path, class: 'btn btn-sm btn-success', data: { turbo_frame: dom_id(Conversion.new) } do %>
+      <i class="fa fa-xs fa-plus"></i>
+    <%end%>
+
+    <% unless notice.nil? %>
+      <div id="notice" class="alert alert-info">
+        <a href="#" class="close"><i class="fa fa-times"></i></a>
+        <strong>Info! </strong><%= notice %>
+      </div>
+    <%end%>
+
+    <%= turbo_frame_tag Conversion.new %>
+
+    <hr>
+    <h4>Conversion Lists</h4>           
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Base Currency</th>
+          <th>Target Currency</th>
+          <th>Rate</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @conversions.each do |conversion| %>
+          <tr>
+            <td><%= conversion.base_currency %></td>
+            <td><%= conversion.target_currency %></td>
+            <td id="rate_<%=conversion.id%>"><%= conversion.rate %></td>
+            <td>
+              <%= link_to conversion_path(conversion), class: 'btn btn-sm btn-danger', data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} do %>
+                <i class="fa fa-xs fa-trash"></i>
+              <%end%>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  <%end%>
+</div>

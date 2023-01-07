@@ -1,5 +1,17 @@
-<h4>SETTINGS</h4>
-<%= form_tag settings_update_path do |f| %>
-  <%=text_field_tag :api_key, Setting.api_key %>
-  <%=submit_tag 'save' %>
-<%end%>
+<div class="container">
+  <%= turbo_frame_tag 'settings' do%>
+    <%=link_to root_path, class: 'btn btn-sm btn-primary',data: { turbo: false } do %>
+      <i class="fa fa-xs fa-arrow-left"></i>
+      <span>Back to Dashboard</span>
+    <%end%>
+    <%= form_tag settings_update_path do |f| %>
+      <div class="form-group">
+        <label>Please Add Your API KEY</label>
+        <%=text_field_tag :api_key, Setting.api_key, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%=submit_tag 'Save', class: 'btn btn-sm btn-success' %>
+      </div>
+    <%end%>
+  <%end%>
+</div>
