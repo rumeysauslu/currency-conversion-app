@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+Setting.api_key = "XZSaOYpOGW6JSQZbeY0qo1F9P4wn1oSx"
