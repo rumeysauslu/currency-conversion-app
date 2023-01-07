@@ -6,7 +6,7 @@ namespace :conversion do
   task set_rates: [:environment] do
     Conversion.all.each do |conversion|
       response = get_response(conversion.base_currency, conversion.target_currency)
-      con.update(rate: response['info']['rate'])
+      conversion.update(rate: response['info']['rate'])
     end
     ActionCable.server.broadcast('conversion_channel', Conversion.all)
   end
