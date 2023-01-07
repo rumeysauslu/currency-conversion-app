@@ -33,4 +33,4 @@ It is an application to show currency conversion rates in real time using fixer.
   ```
 
 - fixer.io API KEY
-  * There is an api key defined in the seed.rb, but for a new one, the api key must be entered in the settings.
+  * There is an api key defined in the seeds.rb, but for a new one, the api key must be entered in the settings.
