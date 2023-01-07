@@ -31,6 +31,11 @@ It is an application to show currency conversion rates in real time using fixer.
   ```bash
   whenever --update-crontab --set environment='development'
   ```
+- Run the rake task
+
+  ```bash
+  rake conversion:set_rates
+  ```
 
 - fixer.io API KEY
   * There is an api key defined in the seeds.rb, but for a new one, the api key must be entered in the settings.
